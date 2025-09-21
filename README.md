@@ -2,43 +2,60 @@
 
 A blockchain-powered platform for farmers to discover real-time produce prices, understand supply chain markups, and connect directly with buyers, built for the Base ecosystem.
 
-## Features
+## 🚀 Features
 
-- **Real-time Price Discovery**: Get live aggregated pricing data for crops across regional markets
-- **Supply Chain Transparency**: Visualize cost breakdowns and markups through the supply chain
-- **Direct Buyer Marketplace**: Connect with verified wholesale buyers, restaurants, and retailers
-- **Micro-transaction Model**: Pay small fees for price lookups and buyer connections using Base
+### Core Features
+- **Real-time Price Discovery**: Query live aggregated pricing data for crops in various regional markets
+- **Supply Chain Transparency**: Visualize cost breakdowns and markups by intermediaries
+- **Direct Buyer Marketplace**: Curated list of verified wholesale buyers and retailers
+- **Micro-transaction Model**: Pay small fees ($0.01-$0.05) per price lookup or buyer connection
 
-## Tech Stack
+### Technical Features
+- **Base Mini App**: Fully functional Farcaster Frame integration
+- **Web App**: Responsive Next.js application with modern UI/UX
+- **Blockchain Integration**: Built on Base network with micro-transactions
+- **Real-time Data**: Mock data simulation with realistic pricing fluctuations
 
-- **Framework**: Next.js 15 with App Router
-- **Blockchain**: Base (Ethereum L2)
-- **Wallet Integration**: MiniKit + OnchainKit
-- **Styling**: Tailwind CSS
-- **Charts**: Recharts
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15.0.0 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS with shadcn/ui components
+- **Blockchain**: Base network via OnchainKit
+- **Frames**: Farcaster Frames via frames.js
+- **Charts**: Recharts for data visualization
 - **Icons**: Lucide React
 
-## Getting Started
+## 📋 Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- Coinbase Developer Platform account (for OnchainKit API key)
+- Neynar account (for Frame validation)
+
+## 🚀 Getting Started
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd agrochain-connect
+   git clone https://github.com/vistara-apps/cc116b50-2434-4488-9e25-5a0f967712c5.git
+   cd cc116b50-2434-4488-9e25-5a0f967712c5
    ```
 
 2. **Install dependencies**
    ```bash
-   npm install
+   npm install --legacy-peer-deps
    ```
 
 3. **Set up environment variables**
    ```bash
-   cp .env.local.example .env.local
+   cp .env.example .env.local
    ```
-   
-   Add your OnchainKit API key from [Coinbase Developer Platform](https://portal.cdp.coinbase.com/):
+
+   Edit `.env.local` with your API keys:
    ```
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
    NEXT_PUBLIC_ONCHAINKIT_API_KEY=your_api_key_here
+   NEYNAR_API_KEY=your_neynar_api_key_here
    ```
 
 4. **Run the development server**
@@ -49,91 +66,163 @@ A blockchain-powered platform for farmers to discover real-time produce prices, 
 5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Project Structure
+## 🏗️ Project Structure
 
 ```
 ├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout with providers
-│   ├── page.tsx           # Home page
-│   ├── providers.tsx      # MiniKit and OnchainKit providers
-│   └── globals.css        # Global styles
+│   ├── api/frame/         # Farcaster Frame API routes
+│   ├── og/                # Open Graph image generation
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Homepage
+│   └── providers.tsx      # Context providers
 ├── components/            # React components
 │   ├── AppShell.tsx       # Main app layout
-│   ├── HeroSection.tsx    # Landing hero section
-│   ├── PriceDiscovery.tsx # Price lookup feature
-│   ├── SupplyChainInsights.tsx # Supply chain visualization
-│   ├── BuyerMarketplace.tsx    # Buyer directory
-│   └── ...
-├── lib/                   # Utilities and types
-│   ├── types.ts          # TypeScript type definitions
-│   ├── constants.ts      # App constants and sample data
-│   └── utils.ts          # Utility functions
-└── public/               # Static assets
+│   ├── HeroSection.tsx    # Landing section
+│   ├── PriceDiscovery.tsx # Price lookup interface
+│   ├── SupplyChainInsights.tsx # Markup visualization
+│   ├── BuyerMarketplace.tsx    # Buyer listing
+│   └── BuyerProfileCard.tsx    # Individual buyer cards
+├── lib/                   # Utilities and constants
+│   ├── constants.ts       # App constants and mock data
+│   ├── types.ts           # TypeScript type definitions
+│   └── utils.ts           # Helper functions
+└── public/                # Static assets
 ```
 
-## Core Features
+## 🎯 User Flows
 
-### 1. Price Discovery
-- Select crop and market region
-- Pay micro-transaction fee (e.g., $0.01) for real-time price data
-- View current prices, historical changes, and market trends
-- Set price alerts for specific crops
+### Farmer Onboarding & Price Check
+1. User clicks MiniApp Frame
+2. Brief intro to AgroChain Connect
+3. Wallet connection prompt
+4. Crop and market selection
+5. Price display with micro-transaction fee
+6. Optional buyer connection
 
-### 2. Supply Chain Transparency
-- Interactive charts showing price markups at each stage
-- Detailed breakdown from farm gate to retail
-- Educational insights about supply chain dynamics
-- Compare different crops and their markup patterns
+### Buyer Discovery
+1. Navigate to Buyers tab
+2. Filter buyers by location and crops
+3. View buyer profiles
+4. Initiate contact with micro-transaction
 
-### 3. Buyer Marketplace
-- Browse verified buyers by location and crop interest
-- View buyer profiles with ratings and descriptions
-- Connect directly with buyers via micro-transaction
-- Filter and search functionality
+## 🔧 API Documentation
 
-## Business Model
+### Frame API (`/api/frame`)
+Handles Farcaster Frame interactions for the Base Mini App.
 
-- **Micro-transactions**: Small fees for price lookups ($0.01) and buyer connections ($0.05)
-- **Base Integration**: Leverages Base's low-cost L2 for affordable transactions
-- **Scalable**: Low-friction payment model that grows with usage
+**Endpoint**: `POST /api/frame`
 
-## Development
-
-### Adding New Features
-
-1. **Data Models**: Update types in `lib/types.ts`
-2. **Sample Data**: Add test data in `lib/constants.ts`
-3. **Components**: Create new components in `components/`
-4. **Styling**: Use Tailwind classes following the design system
-
-### Design System
-
-- **Colors**: Agricultural theme with greens and earth tones
-- **Typography**: Clean, readable fonts optimized for mobile
-- **Components**: Consistent card-based layout with proper spacing
-- **Animations**: Subtle transitions for better UX
-
-## Deployment
-
-The app is optimized for deployment on Vercel:
-
-```bash
-npm run build
-npm start
+**Request Body**:
+```json
+{
+  "untrustedData": {
+    "fid": 123,
+    "buttonIndex": 1,
+    "state": "{\"page\":\"home\"}"
+  },
+  "trustedData": {
+    "messageBytes": "..."
+  }
+}
 ```
 
-## Contributing
+**Response**:
+```json
+{
+  "image": "https://example.com/og-image.png",
+  "buttons": [
+    {
+      "label": "Get Started",
+      "action": "post"
+    }
+  ],
+  "state": "{\"page\":\"price-discovery\"}"
+}
+```
+
+### OG Image API (`/og`)
+Generates dynamic Open Graph images for social sharing.
+
+**Endpoint**: `GET /og`
+
+**Response**: PNG image (1200x630)
+
+## 🎨 Design System
+
+### Colors
+- **Background**: `hsl(0, 0%, 96%)`
+- **Primary**: `hsl(142, 70%, 40%)`
+- **Accent**: `hsl(200, 50%, 50%)`
+- **Surface**: `hsl(0, 0%, 100%)`
+
+### Typography
+- **Display**: `text-3xl font-bold`
+- **Heading**: `text-xl font-semibold`
+- **Body**: `text-base font-normal`
+- **Caption**: `text-sm font-normal`
+
+### Layout
+- **Grid**: 12-column fluid with 16px gutter
+- **Container**: `max-w-screen-sm px-4`
+- **Spacing**: 8px (sm), 16px (md), 24px (lg)
+
+## 🚀 Deployment
+
+### Vercel Deployment
+1. Connect your GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically on push to main branch
+
+### Environment Variables for Production
+```env
+NEXT_PUBLIC_BASE_URL=https://your-domain.vercel.app
+NEXT_PUBLIC_ONCHAINKIT_API_KEY=your_production_api_key
+NEYNAR_API_KEY=your_production_neynar_key
+```
+
+## 🔒 Security Considerations
+
+- All micro-transactions use burn addresses for demo purposes
+- In production, implement proper smart contracts for fee collection
+- Validate all user inputs and API responses
+- Use HTTPS in production environments
+
+## 📊 Business Model
+
+### Revenue Streams
+- **Micro-transactions**: $0.01 per price lookup, $0.05 per buyer connection
+- **Premium Features**: Advanced analytics and historical data
+- **Subscription Model**: Monthly access for power users
+
+### Target Users
+- Small to medium-sized farmers
+- Agricultural cooperatives
+- Wholesale buyers and retailers
+- Agricultural technology enthusiasts
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## License
+## 📄 License
 
-MIT License - see LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Support
+## 🙏 Acknowledgments
 
-For questions or support, please open an issue on GitHub or contact the development team.
+- Built with [OnchainKit](https://onchainkit.xyz/) by Coinbase
+- Frame functionality powered by [frames.js](https://framesjs.org/)
+- UI components from [shadcn/ui](https://ui.shadcn.com/)
+- Icons by [Lucide](https://lucide.dev/)
+
+## 📞 Support
+
+For support and questions:
+- Create an issue in this repository
+- Contact the development team
+- Check the [Base documentation](https://docs.base.org/) for blockchain-related questions
+

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Star, MapPin, MessageCircle, Shield, Package, Loader2 } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 import { MICRO_TRANSACTION_FEES } from '@/lib/constants';
+
 import type { Buyer } from '@/lib/types';
 
 interface BuyerProfileCardProps {
@@ -16,7 +17,7 @@ export function BuyerProfileCard({ buyer }: BuyerProfileCardProps) {
 
   const handleConnect = async () => {
     setIsConnecting(true);
-    
+
     // Simulate micro-transaction and connection process
     setTimeout(() => {
       setIsConnecting(false);
