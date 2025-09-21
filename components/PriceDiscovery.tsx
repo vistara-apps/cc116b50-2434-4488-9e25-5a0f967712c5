@@ -6,6 +6,7 @@ import { SAMPLE_CROPS, SAMPLE_MARKETS, MICRO_TRANSACTION_FEES } from '@/lib/cons
 import { formatPrice, generateMockPrice } from '@/lib/utils';
 import { MarketPriceCard } from './MarketPriceCard';
 
+
 export function PriceDiscovery() {
   const [selectedCrop, setSelectedCrop] = useState('');
   const [selectedMarket, setSelectedMarket] = useState('');
@@ -16,12 +17,12 @@ export function PriceDiscovery() {
     if (!selectedCrop || !selectedMarket) return;
 
     setIsLoading(true);
-    
-    // Simulate API call and micro-transaction
+
+    // Simulate micro-transaction and API call
     setTimeout(() => {
       const crop = SAMPLE_CROPS.find(c => c.id === selectedCrop);
       const market = SAMPLE_MARKETS.find(m => m.id === selectedMarket);
-      
+
       // Generate mock price data
       const basePrice = Math.random() * 5 + 1; // $1-6 base price
       const currentPrice = generateMockPrice(basePrice);
@@ -39,7 +40,7 @@ export function PriceDiscovery() {
         lastUpdated: new Date().toISOString(),
         source: 'Market Data Aggregator',
       });
-      
+
       setIsLoading(false);
     }, 1500);
   };
